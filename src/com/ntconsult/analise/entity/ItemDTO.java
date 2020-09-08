@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ItemDTO {
 	
-	private int id;
+	private String id;
 	
 	private int quantity;
 	

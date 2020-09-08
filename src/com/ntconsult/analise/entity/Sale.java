@@ -2,6 +2,7 @@ package com.ntconsult.analise.entity;
 
 import java.util.ArrayList;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,12 +10,13 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class SaleDTO {
+@EqualsAndHashCode
+public class Sale {
 	
 	private String saleId;
 	
-	private String items;
+	private ArrayList<Item> items;
 	
 	private String salesmanName;
-	
+
 }

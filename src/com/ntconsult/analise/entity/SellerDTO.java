@@ -13,6 +13,8 @@ public class SellerDTO {
 	
 	private String name;
 	
-	private double salary;
+	private String salary;
+	
+	private double amount;
 	
 }
