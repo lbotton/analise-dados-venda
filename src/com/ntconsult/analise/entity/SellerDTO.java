@@ -16,5 +16,14 @@ public class SellerDTO {
 	private String salary;
 	
 	private double amount;
+
+	public SellerDTO(String[] result) {
+		super();
+		this.cpf = result[1];
+		this.name = result[2];
+		this.salary = result[3];
+	}
+	
+	
 	
 }

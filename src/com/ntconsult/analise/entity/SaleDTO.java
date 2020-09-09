@@ -16,5 +16,18 @@ public class SaleDTO {
 	private String items;
 	
 	private String salesmanName;
+
+	public SaleDTO(String[] result) {
+		super();
+		this.saleId = result[1];
+		
+		this.items = result[2];
+		this.salesmanName = result[3];
+		
+		
+		
+	}
+	
+	
 	
 }

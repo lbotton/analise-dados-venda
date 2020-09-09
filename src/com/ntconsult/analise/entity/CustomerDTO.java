@@ -14,5 +14,13 @@ public class CustomerDTO {
 	private String name;
 	
 	private String businessArea;
+
+	public CustomerDTO(String[] result) {
+		super();
+		this.cnpj = result[1];
+		this.name = result[2];
+		this.businessArea = result[3];
+	}
+	
 	
 }

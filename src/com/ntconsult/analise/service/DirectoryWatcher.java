@@ -27,14 +27,13 @@ public class DirectoryWatcher {
 	private final String HOMEPATH = System.getProperty("user.home") + "//data//in//";
 	private final String OUTPATH = System.getProperty("user.home") + "//data//out//";
 	
-	private int eventCounter = 0;
-
-	//bubble method 
 	private double mostExpensiveSaleValue = 0;
 	private String mostExpensiveSaleId = "";
 
 	private double worstSellerValue = 0;
 	private String worstSellerName = "";
+	
+	private int eventCounter = 0;
 	
 	//NIO watch service
 	public void watcher() throws IOException, InterruptedException, URISyntaxException {
@@ -73,17 +72,11 @@ public class DirectoryWatcher {
 		    String[] result = currentLine.split("�");
 		    switch(Integer.parseInt(lineType)) {
 		    case 1 : 
-		    	SellerDTO seller = new SellerDTO();
-		    	seller.setCpf(result[1]);
-		    	seller.setName(result[2]);
-		    	seller.setSalary(result[3]);
+		    	SellerDTO seller = new SellerDTO(result);
 		    	sellersQuantity++;
 		    	break;
 		    case 2 :
-		    	CustomerDTO customer = new CustomerDTO();
-		    	customer.setCnpj(result[1]);
-		    	customer.setName(result[2]);
-		    	customer.setBusinessArea(result[3]);
+		    	CustomerDTO customer = new CustomerDTO(result);
 		    	customersQuantity++;
 		    	break;
 		    case 3 :
@@ -115,21 +108,12 @@ public class DirectoryWatcher {
 		}
 		reader.close();
 
-		writeOutFile(customersQuantity, sellersQuantity);
-		
+		Output output = new Output();
+		output.writeOutFile(customersQuantity, sellersQuantity, OUTPATH+eventCounter, worstSellerName, mostExpensiveSaleId);
+				
+		eventCounter++;
 		customersQuantity = 0;
 		sellersQuantity = 0;
-	}
-
-	private void writeOutFile(int customersQuantity, int sellersQuantity) throws IOException {
-		FileWriter fileWriter = new FileWriter(OUTPATH+eventCounter+"-out.txt");
-	    PrintWriter printWriter = new PrintWriter(fileWriter);
-	    printWriter.println("Customers Quantity: " + customersQuantity);
-	    printWriter.println("Sellers Quantity: " + sellersQuantity);
-	    printWriter.println("Worst Seller: " + worstSellerName);
-	    printWriter.println("Most Expensive Sale ID: " + mostExpensiveSaleId);
-	    printWriter.close();
-	    eventCounter++;
 	}
 	
 }
