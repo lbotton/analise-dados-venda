@@ -24,10 +24,20 @@ public class SaleDTO {
 		this.items = result[2];
 		this.salesmanName = result[3];
 		
-		
-		
 	}
 	
+	public double evaluateMostExpensiveSaleValue(double totalSaleValue, double mostExpensiveSaleValue) {
+		if(totalSaleValue > mostExpensiveSaleValue) {
+			return totalSaleValue;
+		}
+		return mostExpensiveSaleValue;
+	}
 	
+	public String evaluateMostExpensiveSaleId(double totalSaleValue, double mostExpensiveSaleValue, String mostExpensiveSaleId) {
+		if(totalSaleValue > mostExpensiveSaleValue) {
+			return this.saleId;
+		}
+		return mostExpensiveSaleId;
+	}
 	
 }
